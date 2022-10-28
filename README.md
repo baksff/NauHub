@@ -1,3 +1,7 @@
 # NauHub
 
-there's nothing here
+# Main Script
+
+```lua
+
+````

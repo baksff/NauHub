@@ -6,7 +6,7 @@
     "6839171747":{"name":"DOORS", "Script":"https://raw.githubusercontent.com/baksff/NauHub/master/GamesSupported/TappingLegendsX.lua", "Working":true},
     "9872472334":{"name":"Evade", "Script":"https://raw.githubusercontent.com/baksff/NauHub/master/GamesSupported/TappingLegendsX.lua", "Working":true},
     "3956818381":{"name":"Ninja Legends", "Script":"https://raw.githubusercontent.com/baksff/NauHub/master/GamesSupported/TappingLegendsX.lua", "Working":true},
-    "9551640993":{"name":"Mining Simulator 2", "Script":"https://raw.githubusercontent.com/baksff/NauHub/master/GamesSupported/TappingLegendsX.lua", "Working":true},
+    "9551640993":{"name":"Mining Simulator 2", "Script":"'print('hhhh')'", "Working":true},
     "2653064683":{"name":"Word Bomb", "Script":"https://raw.githubusercontent.com/baksff/NauHub/master/GamesSupported/TappingLegendsX.lua", "Working":true},
     "9772878203":{"name":"raise a floppa 2", "Script":"https://raw.githubusercontent.com/baksff/NauHub/master/GamesSupported/TappingLegendsX.lua", "Working":true},
     "9498006165":{"name":"Tapping Simulator!", "Script":"https://raw.githubusercontent.com/baksff/NauHub/master/GamesSupported/TappingLegendsX.lua", "Working":true}

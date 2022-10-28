@@ -1,4 +1,13 @@
 {
-    "4483381587":{"name":"baseplate","Script":"https://raw.githubusercontent.com/baksff/testt/master/bp.lua","Working":true},
-    "4793451617":{"name":"Planet Mining", "Script":"https://raw.githubusercontent.com/Snakeboy99/BLUEX/main/Games/Planet_Mining.lua", "Working":true}
+    "8750997647":{"name":"Tapping Legends X","Script":"https://raw.githubusercontent.com/baksff/NauHub/master/GamesSupported/TappingLegendsX.lua","Working":true},
+    "155615604":{"name":"Prison Life", "Script":"", "Working":true},
+    "7044096177":{"name":"The Obby Elevator", "Script":"", "Working":true},
+    "6516141723":{"name":"DOORS", "Script":"", "Working":true},
+    "6839171747":{"name":"DOORS", "Script":"", "Working":true},
+    "9872472334":{"name":"Evade", "Script":"", "Working":true},
+    "3956818381":{"name":"Ninja Legends", "Script":"", "Working":true},
+    "9551640993":{"name":"Mining Simulator 2", "Script":"", "Working":true},
+    "2653064683":{"name":"Word Bomb", "Script":"", "Working":true},
+    "9772878203":{"name":"raise a floppa 2", "Script":"", "Working":true},
+    "9498006165":{"name":"Tapping Simulator!", "Script":"", "Working":true}
 }

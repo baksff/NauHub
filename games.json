@@ -1,0 +1,12 @@
+{
+    "baseplate": {
+        "Id": "4483381587",
+        "Url": "https://raw.githubusercontent.com/baksff/testt/master/bp.lua",
+        "Working": "true"
+    },
+    "game2": {
+        "Id": "4483381587",
+        "Url": "somelinkssss",
+        "Working": "false"
+    }
+}

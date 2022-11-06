@@ -1,52 +1,37 @@
--- Main Lib
+--// getgenv
 
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+getgenv().esp = false
+getgenv().teamcheck = false
+getgenv().Color = Color3.fromRGB(255, 255, 255)
 
-local Path = game.CoreGui:FindFirstChild("Orion")
+--// Services
 
--- Orion Window
-
-local Window = OrionLib:MakeWindow({IntroText = "NauHub: Word Bomb", Name = "Nau Hub: Word Bomb", HidePremium = false, SaveConfig = true, ConfigFolder = "Word Bomb"})
-
--- Variables
-
-local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
-local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
-local httpservice = game:GetService('HttpService')
-local player = game.Players.LocalPlayer
-local workspace = game.Workspace
 local RbxAnylytics = game:GetService("RbxAnalyticsService")
-local executercheck = identifyexecutor and table.concat({ identifyexecutor() }, " ") or "Unknown";
-local LocalizationService = game:GetService("LocalizationService")
 
-print("Successfully Loaded")
+local LocalizationService = game:GetService("LocalizationService")
 
 hookfunction(error, warn)
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+--// Variables
+
+local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+local executor = identifyexecutor and table.concat({ identifyexecutor() }, " ") or "Unknown";
+
+local player = game.Players.LocalPlayer
+local workspace = game.Workspace
+
+print("Successfully Loaded")
+
 local localplr = Players.LocalPlayer
 local PlayerGui = localplr.PlayerGui
 local PlayerScripts = localplr.PlayerScripts
+
 local ClientGameScript = PlayerScripts:WaitForChild("ClientGameScript")
 local MobileService = require(ClientGameScript:WaitForChild("MobileService"))
-
--- Values
-
-getgenv().esp = false
-getgenv().teamcheck = false
-getgenv().Color = Color3.fromRGB(255, 255, 255)
-
-local espLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Sirius/request/library/esp/esp.lua'),true))()
-
-getgenv().Settings = {
-    AutoType = true,
-    AutoJoin = true,
-    LongWords = false,
-    breakscript = false,
-    TypeTime = 2
-}
 
 local Response = game:HttpGet("https://raw.githubusercontent.com/WordReaper/word-bomb/main/words.txt")
 local Words = {}
@@ -65,6 +50,16 @@ for line in string.gmatch(Response,"[^\r\n]*") do
         table.insert(LongWords, line)
     end
 end
+
+--// Tables
+
+getgenv().Settings = {
+    AutoType = true,
+    AutoJoin = true,
+    LongWords = false,
+    breakscript = false,
+    TypeTime = 2
+}
 
 local KeyCodes = {
     A = 0x41,
@@ -95,8 +90,7 @@ local KeyCodes = {
     Z = 0x5B
 }
 
-
--- Function
+--// Functions
 
 function getPlayers()
     local table1 = {}
@@ -205,193 +199,216 @@ function TypeWord(Pattern)
     Typing = false
 end
 
--- Tab
+--// Library Setup
+local gname = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name -- Get Game Name
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
-local HomeTab = Window:MakeTab({
-	Name = "Home",
-	Icon = "rbxassetid://4370345144",
-	PremiumOnly = false
-
+local Window = Rayfield:CreateWindow({
+	Name = "NauHub | "..gname, -- Using game name in the title
+	LoadingTitle = "Welcome to NauHub Word Bomb, "..plr.Name,
+	LoadingSubtitle = "by NauHub",
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = "NauHub File",
+		FileName = "NauHub Word Bomb"
+	},
+	KeySystem = false, -- Set this to true to use our key system
+	KeySettings = {
+		Title = "Sirius Hub",
+		Subtitle = "Key System",
+		Note = "Join the discord (discord.gg/sirius)",
+		SaveKey = true,
+		Key = "ABCDEF"
+	}
 })
 
-local SupportedGameTab = Window:MakeTab({
-	Name = "SupportedGame",
-	Icon = "rbxassetid://4370344717",
-	PremiumOnly = false
+function CopyLink()
+    Rayfield:Notify("Copy Link","Copy Link Added Please Paste It In Your Browser",3944680095)
+    end
 
-})
+--// Player Info Tab
 
-local PlayerInfomationTab = Window:MakeTab({
-	Name = "Player Info",
-	Icon = "rbxassetid://4384401919",
-	PremiumOnly = false
+local PITab = Window:CreateTab("Player Info",4335480896)
+local PISection = PITab:CreateSection("Player Info")
+PITab:CreateLabel("Executor: "..executor)
+PITab:CreateLabel("Name: "..plr.Name)
+PITab:CreateLabel("DisplayName:  "..plr.DisplayName)
+PITab:CreateLabel("Account Age: "..plr.AccountAge.." days")
+PITab:CreateLabel("UserId: "..plr.UserId)
+PITab:CreateLabel("SystemLocaleId: "..LocalizationService.SystemLocaleId)
+PITab:CreateLabel("LocaleId: "..LocalizationService.RobloxLocaleId)
 
-})
+--// Main Tab
 
-local MainTab = Window:MakeTab({
-	Name = "Main",
-	Icon = "rbxassetid://4370319235",
-	PremiumOnly = false
-})
+local MainTab = Window:CreateTab("Main",4370319235)
 
-local AutoSection = MainTab:AddSection({
-	Name = "Auto Type/Auto Join"
-})
+local AutoSection = MainTab:CreateSection("Auto Type/Auto Join")
 
-local LongSection = MainTab:AddSection({
-	Name = "Long Words/Type Delay"
-})
-
-
--- Orion Paragraph
-
-HomeTab:AddParagraph("Welcome To Nau Hub!","Last updated : 25/10/2022 Executer Does Support Our Script : Synapse-X,Script-Ware,KRNL,Fluxus And Oxygen-U")
-
--- Orion Label
-
-PlayerInfomationTab:AddLabel("Player Executer: " ..executercheck.."")
-
-PlayerInfomationTab:AddLabel("Player Username: " ..player.Name.."")
-
-PlayerInfomationTab:AddLabel("Player DisplayName: " ..player.DisplayName.."")
-
-PlayerInfomationTab:AddLabel("Player AccountAge: " ..player.AccountAge.."")
-
-PlayerInfomationTab:AddLabel("Player UserID: " ..player.UserId.."")
-
-PlayerInfomationTab:AddLabel("Player SystemLocaleID: " ..LocalizationService.SystemLocaleId.."")
-
-PlayerInfomationTab:AddLabel("Player LocaleID: " ..LocalizationService.RobloxLocaleId.."")
-
-
--- Orion Slider
-
-
--- Orion Button
-
-SupportedGameTab:AddButton({
-	Name = "Tapping Legend",
+--// Credits Tab
+local CTab = Window:CreateTab("Credits",3944676934)
+local CSection = CTab:CreateSection("Credits")
+CTab:CreateButton({
+	Name = "Made by Nau#4866 (click to copy)",
 	Callback = function()
-        game:GetService("TeleportService"):Teleport(8750997647) 
-  	end    
+        CopyLink()
+		setclipboard("Nau#4866")
+	end,
 })
-
-SupportedGameTab:AddButton({
-	Name = "Prison Life",
+CTab:CreateButton({
+	Name = "UI: Rayfield Interface Suite (click to copy)",
 	Callback = function()
-        game:GetService("TeleportService"):Teleport(155615604) 
-  	end    
+		setclipboard("https://v3rmillion.net/showthread.php?tid=1191985")
+	end,
 })
-
-SupportedGameTab:AddButton({
-	Name = "DOORS",
+CTab:CreateButton({
+	Name = "Our discord server (click to join)",
 	Callback = function()
-        game:GetService("TeleportService"):Teleport(6516141723) 
-  	end    
+		Module.Join("XHrQ6DPzcb")
+	end,
 })
 
-SupportedGameTab:AddButton({
+--// Supported Game Tab
+local SupportedGameTab = Window:CreateTab("Credits",4370344717)
+
+local SupportedSection = SupportedGameTab:CreateSection("Supported Game")
+
+SupportedGameTab:CreateButton({
+	Name = "Tapping Legends",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(8750997647) 
+	end,
+})
+
+SupportedGameTab:CreateButton({
 	Name = "Evade",
 	Callback = function()
-        game:GetService("TeleportService"):Teleport(9872472334) 
-  	end    
+    game:GetService("TeleportService"):Teleport(9872472334) 
+	end,
 })
 
-SupportedGameTab:AddButton({
+SupportedGameTab:CreateButton({
 	Name = "The Obby Elevator",
 	Callback = function()
-        game:GetService("TeleportService"):Teleport(7044096177) 
-  	end    
+    game:GetService("TeleportService"):Teleport(7044096177) 
+    end,
 })
 
-SupportedGameTab:AddButton({
+SupportedGameTab:CreateButton({
 	Name = "Ninja Legends",
 	Callback = function()
-        game:GetService("TeleportService"):Teleport(3956818381) 
-  	end    
+    game:GetService("TeleportService"):Teleport(3956818381) 
+    end,
 })
 
-SupportedGameTab:AddButton({
+SupportedGameTab:CreateButton({
 	Name = "Mining Simulator 2",
 	Callback = function()
-        game:GetService("TeleportService"):Teleport(9551640993) 
-  	end    
+    game:GetService("TeleportService"):Teleport(9551640993) 
+    end,
 })
 
-HomeTab:AddButton({
-	Name = "Script Made By: Nau#4866 ",
+
+SupportedGameTab:CreateButton({
+	Name = "Rarity Factory Tycoon",
 	Callback = function()
-      		setclipboard("https://discord.gg/XHrQ6DPzcb")
-              OrionLib:MakeNotification({
-                Name = "Nau Hub Discord ",
-                Content = "Copied Invite Link!",
-                Image = "rbxassetid://4503342956",
-                Time = 5
-            })
-  	end    
+    game:GetService("TeleportService"):Teleport(10919241870) 
+    end,
 })
 
--- Orion Notification
-
-OrionLib:MakeNotification({
-	Name = "Welcome To Nau Hub! "..player.DisplayName.."",
-	Content = "Thanks For Using Nau Hub Enjoy Your Script!!: Word Bomb Last Updated: 25/10/2022",
-	Image = "rbxassetid://4335489513",
-	Time = 13
+SupportedGameTab:CreateButton({
+	Name = "Prison Life",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(155615604) 
+    end,
 })
 
--- Main Button/Toggles
+SupportedGameTab:CreateButton({
+	Name = "Tapping Simulator",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(9498006165) 
+    end,
+})
 
-AutoSection:AddToggle({
+SupportedGameTab:CreateButton({
+	Name = "Word Bomb",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(2653064683) 
+    end,
+})
+
+SupportedGameTab:CreateButton({
+	Name = "Raise A Floppa 2",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(9772878203) 
+    end,
+})
+
+-- Notification Loaded
+
+Rayfield:Notify({
+	Title = "Nau Hub Loaded!",
+	Content = "NauHub | "..gname,
+	Duration = 4,
+	Image = 4384403532,
+  })
+
+--// MainScript Tab
+
+local AutoTypeToggle = MainTab:CreateToggle({
 	Name = "Auto Type",
-	Default = false,
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 		Settings.AutoType = Value
-	end    
+	end,
 })
 
-AutoSection:AddToggle({
+local AutoTypeToggle = MainTab:CreateToggle({
 	Name = "Auto Join",
-	Default = false,
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 		Settings.AutoJoin = Value
-	end    
+	end,
 })
 
-LongSection:AddToggle({
+local LongSection = MainTab:CreateSection("Long Words/Type Delay")
+
+local LongWordsToggle = MainTab:CreateToggle({
 	Name = "Long Words Only",
-	Default = false,
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 		Settings.LongWords = Value
-	end    
+	end,
 })
 
-LongSection:AddSlider({
+local Slider = MainTab:CreateSlider({
 	Name = "Type Delay",
-	Min = 0,
-	Max = 6,
-	Default = 0,
-	Color = Color3.fromRGB(255, 0, 0),
+	Range = {0, 6},
 	Increment = 1,
-	ValueName = "Type Delay Values",
+	Suffix = "Type Delay Set",
+	CurrentValue = 0,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 		Settings.TypeTime = Value
-	end    
+	end,
 })
 
-MainTab:AddLabel("Please Ignore This Thing")
+local Label = MainTab:CreateLabel("Please Ignore This Thing")
 
-MainTab:AddToggle({
+local LongWordsToggle = MainTab:CreateToggle({
 	Name = "Destroy Script",
-	Default = false,
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 		Settings.breakscript = Value
-	end    
+	end,
 })
 
 while wait(0.5) do
     if Settings.breakscript == true then
-        Path:Destroy()
+        Rayfield:Destroy()
         break
     end
     --[[if CanType() then
@@ -418,5 +435,3 @@ while wait(0.5) do
         local JoinButton = GetJoinButton()
     end
 end
-
-OrionLib:Init()

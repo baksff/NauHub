@@ -1,8 +1,5 @@
 --// getgenv
 
-getgenv().esp = false
-getgenv().teamcheck = false
-getgenv().Color = Color3.fromRGB(255, 255, 255)
 
 --// Services
 

@@ -207,7 +207,7 @@ local Window = Rayfield:CreateWindow({
 	ConfigurationSaving = {
 		Enabled = true,
 		FolderName = "NauHub File", -- Create a custom folder for your hub/game
-		FileName = "NauHub Mining Word Bomb"
+		FileName = "NauHub Word Bomb"
 	},
         Discord = {
         	Enabled = true,

@@ -201,21 +201,28 @@ local gname = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "NauHub | "..gname, -- Using game name in the title
+	Name = "NauHub | "..gname,
 	LoadingTitle = "Welcome to NauHub Word Bomb, "..plr.Name,
 	LoadingSubtitle = "by NauHub",
 	ConfigurationSaving = {
 		Enabled = true,
-		FolderName = "NauHub File",
-		FileName = "NauHub Word Bomb"
+		FolderName = "NauHub File", -- Create a custom folder for your hub/game
+		FileName = "NauHub Mining Word Bomb"
 	},
+        Discord = {
+        	Enabled = true,
+        	Invite = "https://discord.gg/XHrQ6DPzcb", -- The Discord invite code, do not include discord.gg/
+        	RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        },
 	KeySystem = false, -- Set this to true to use our key system
 	KeySettings = {
 		Title = "Sirius Hub",
 		Subtitle = "Key System",
 		Note = "Join the discord (discord.gg/sirius)",
+		FileName = "SiriusKey",
 		SaveKey = true,
-		Key = "ABCDEF"
+		GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+		Key = "Hello"
 	}
 })
 

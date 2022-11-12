@@ -14,6 +14,11 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 --// Variables
 
+local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
+local httpservice = game:GetService('HttpService')
+queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/baksff/NauHub/master/Loader.lua'))()")
+
 local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 local executor = identifyexecutor and table.concat({ identifyexecutor() }, " ") or "Unknown";
@@ -207,7 +212,7 @@ local Window = Rayfield:CreateWindow({
 	ConfigurationSaving = {
 		Enabled = true,
 		FolderName = "NauHub File", -- Create a custom folder for your hub/game
-		FileName = "NauHub Word Bomb"
+		FileName = "NauHub Mining Word Bomb"
 	},
         Discord = {
         	Enabled = true,
@@ -272,7 +277,7 @@ CTab:CreateButton({
 })
 
 --// Supported Game Tab
-local SupportedGameTab = Window:CreateTab("Credits",4370344717)
+local SupportedGameTab = Window:CreateTab("Supported Game",4370344717)
 
 local SupportedSection = SupportedGameTab:CreateSection("Supported Game")
 
@@ -347,6 +352,34 @@ SupportedGameTab:CreateButton({
     end,
 })
 
+SupportedGameTab:CreateButton({
+	Name = "Tower Of Hell",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(1962086868) 
+    end,
+})
+
+SupportedGameTab:CreateButton({
+	Name = "Arsenal",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(286090429) 
+    end,
+})
+
+SupportedGameTab:CreateButton({
+	Name = "DOORS",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(6516141723) 
+    end,
+})
+
+SupportedGameTab:CreateButton({
+	Name = "Murder Mystery 2",
+	Callback = function()
+    game:GetService("TeleportService"):Teleport(142823291) 
+    end,
+})
+
 -- Notification Loaded
 
 Rayfield:Notify({
@@ -355,6 +388,36 @@ Rayfield:Notify({
 	Duration = 4,
 	Image = 4384403532,
   })
+
+--// Credits Tab
+
+local CTab = Window:CreateTab("Credits",3944676934)
+local CSection = CTab:CreateSection("Credits")
+CTab:CreateButton({
+	Name = "Made by Nau#4866 (click to copy)",
+	Callback = function()
+		setclipboard("Nau#4866")
+	end,
+})
+CTab:CreateButton({
+	Name = "UI: Rayfield Interface Suite (click to copy)",
+	Callback = function()
+		setclipboard("https://v3rmillion.net/showthread.php?tid=1191985")
+	end,
+})
+CTab:CreateButton({
+	Name = "Our discord server (click to join)",
+	Callback = function()
+		Module.Join("XHrQ6DPzcb")
+	end,
+})
+
+CTab:CreateButton({
+	Name = "Destroy GUI",
+	Callback = function()
+        Rayfield:Destroy()
+    end,
+})
 
 --// MainScript Tab
 

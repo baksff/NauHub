@@ -25,6 +25,7 @@ local executor = identifyexecutor and table.concat({ identifyexecutor() }, " ") 
 
 local player = game.Players.LocalPlayer
 local workspace = game.Workspace
+local plr = game.Players.LocalPlayer
 
 print("Successfully Loaded")
 

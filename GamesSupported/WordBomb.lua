@@ -11,6 +11,7 @@ hookfunction(error, warn)
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local plr = game.Players.LocalPlayer
 
 --// Variables
 
@@ -25,7 +26,6 @@ local executor = identifyexecutor and table.concat({ identifyexecutor() }, " ") 
 
 local player = game.Players.LocalPlayer
 local workspace = game.Workspace
-local plr = game.Players.LocalPlayer
 
 print("Successfully Loaded")
 
@@ -208,7 +208,7 @@ local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shle
 
 local Window = Rayfield:CreateWindow({
 	Name = "NauHub | "..gname,
-	LoadingTitle = "Welcome to NauHub Word Bomb, "..plr.Name,
+	LoadingTitle = "Welcome to NauHub Word Bomb, "..Players.LocalPlayer.Name,
 	LoadingSubtitle = "by NauHub",
 	ConfigurationSaving = {
 		Enabled = true,
@@ -241,10 +241,10 @@ function CopyLink()
 local PITab = Window:CreateTab("Player Info",4335480896)
 local PISection = PITab:CreateSection("Player Info")
 PITab:CreateLabel("Executor: "..executor)
-PITab:CreateLabel("Name: "..plr.Name)
-PITab:CreateLabel("DisplayName:  "..plr.DisplayName)
-PITab:CreateLabel("Account Age: "..plr.AccountAge.." days")
-PITab:CreateLabel("UserId: "..plr.UserId)
+PITab:CreateLabel("Name: "..Players.LocalPlayer.Name)
+PITab:CreateLabel("DisplayName:  "..Players.LocalPlayer.DisplayName)
+PITab:CreateLabel("Account Age: "..Players.LocalPlayer.AccountAge.." days")
+PITab:CreateLabel("UserId: "..Players.LocalPlayer.UserId)
 PITab:CreateLabel("SystemLocaleId: "..LocalizationService.SystemLocaleId)
 PITab:CreateLabel("LocaleId: "..LocalizationService.RobloxLocaleId)
 
@@ -384,10 +384,10 @@ SupportedGameTab:CreateButton({
 -- Notification Loaded
 
 Rayfield:Notify({
-	Title = "Nau Hub Loaded!",
+	Title = "NauHub Loaded!",
 	Content = "NauHub | "..gname,
 	Duration = 4,
-	Image = 4384403532,
+	Image = 6031302926,
   })
 
 --// Credits Tab
@@ -398,28 +398,52 @@ CTab:CreateButton({
 	Name = "Made by Nau#4866 (click to copy)",
 	Callback = function()
 		setclipboard("Nau#4866")
+		Rayfield:Notify({
+			Title = "NauHub Owner",
+			Content = "NauHub Discord Tag Owner Has Been Copied",
+			Duration = 4,
+			Image = 6034287519,
+		  })
 	end,
 })
 CTab:CreateButton({
 	Name = "UI: Rayfield Interface Suite (click to copy)",
 	Callback = function()
 		setclipboard("https://v3rmillion.net/showthread.php?tid=1191985")
+		Rayfield:Notify({
+			Title = "Ui Library",
+			Content = "Ui Library Has Been Copied",
+			Duration = 4,
+			Image = 6026660083,
+		  })
 	end,
 })
+
+CTab:CreateButton({
+	Name = "NauHub Icons Kit",
+	Callback = function()
+		setclipboard("https://scriptblox.com/script/Universal-Script-NauHub-Material-Icons-Kit-7311")
+		Rayfield:Notify({
+			Title = "NauHub Icons Kit",
+			Content = "NauHub Icons Kit Has Been Copied",
+			Duration = 4,
+			Image = 6031225809,
+		  })
+	end,
+})
+
 CTab:CreateButton({
 	Name = "Our discord server (click to join)",
 	Callback = function()
 		Module.Join("XHrQ6DPzcb")
+		Rayfield:Notify({
+			Title = "NauHub Discord Link",
+			Content = "NauHub Discord Link Has Been Copied",
+			Duration = 4,
+			Image = 6031302926,
+		  })
 	end,
 })
-
-CTab:CreateButton({
-	Name = "Destroy GUI",
-	Callback = function()
-        Rayfield:Destroy()
-    end,
-})
-
 --// MainScript Tab
 
 local AutoTypeToggle = MainTab:CreateToggle({
